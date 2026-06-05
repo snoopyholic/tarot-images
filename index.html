@@ -94,7 +94,6 @@
     <span class="sl" id="sl3">결제</span>
   </div>
   <div class="body">
-
     <!-- STEP 1 -->
     <div class="step active" id="step-1">
       <div class="pc" id="c1" onclick="selProd(1)">
@@ -127,7 +126,6 @@
         <button class="btn1" onclick="goStep(2)">다음으로</button>
       </div>
     </div>
-
     <!-- STEP 2 -->
     <div class="step" id="step-2">
       <div class="fi"><div class="dv"></div>
@@ -208,7 +206,6 @@
       <button class="btn1" onclick="goStep(3)">다음으로 ✦</button>
       <button class="btn2" onclick="goStep(1)">← 리딩 다시 선택하기</button>
     </div>
-
     <!-- STEP 3 -->
     <div class="step" id="step-3">
       <div class="fi"><div class="dv"></div>
@@ -225,7 +222,6 @@
       <button class="btn1" onclick="doPay()">결제하기 ✦</button>
       <button class="btn2" onclick="goStep(2)">← 내용 수정하기</button>
     </div>
-
   </div>
   <div class="footer">
     본 서비스는 자기 성찰과 영적 탐구 목적으로 제공됩니다.<br>
@@ -241,6 +237,8 @@
 
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
 <script>
+var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_o4SvLdLVNqi3i7TZ_q6uMRQY88dllFdiTcGRICNzk4xaewBAZaJFA0cG5IusFjSb/exec";
+
 var sel = null;
 var prods = {
   1: { lbl: '기본 타로 리딩', amt: 10000 },
@@ -378,11 +376,28 @@ async function doPay() {
       return;
     }
 
+    // 결제 성공 → Apps Script로 직접 전송
     showComplete(customData.name);
+    sendToAppsScript(customData, paymentId);
 
   } catch(err) {
     alert("결제 오류: " + err.message);
   }
+}
+
+function sendToAppsScript(customData, paymentId) {
+  var payload = JSON.stringify({
+    customData: JSON.stringify(customData),
+    paymentId: paymentId
+  });
+
+  fetch(APPS_SCRIPT_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain" },
+    body: payload
+  }).catch(function(err) {
+    console.log("Apps Script 전송 오류:", err);
+  });
 }
 
 function showComplete(name) {
