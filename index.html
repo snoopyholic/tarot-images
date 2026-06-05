@@ -395,15 +395,6 @@ function sendToAppsScript(customData, paymentId) {
   img.src = APPS_SCRIPT_URL + "?data=" + payload;
 }
 
-  fetch(APPS_SCRIPT_URL, {
-    method: "POST",
-    headers: { "Content-Type": "text/plain" },
-    body: payload
-  }).catch(function(err) {
-    console.log("Apps Script 전송 오류:", err);
-  });
-}
-
 function showComplete(name) {
   document.querySelector('.body').innerHTML =
     '<div style="text-align:center;padding:40px 0;">' +
