@@ -362,6 +362,7 @@ async function doPay() {
       totalAmount: p.amt,
       currency:    "KRW",
       payMethod:   "CARD",
+      isTestChannel: true,  
       customer: {
         fullName: customData.name,
         email:    email
