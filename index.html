@@ -351,7 +351,7 @@ async function doPay() {
     extra:      document.getElementById('fa').value.trim()
   };
 
-  var paymentId = "ink-" + Date.now() + "-" + Math.random().toString(36).substr(2,6);
+  var paymentId = "ink" + Date.now() + Math.random().toString(36).substr(2,6);
 
   try {
     var response = await PortOne.requestPayment({
