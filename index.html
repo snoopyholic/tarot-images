@@ -386,10 +386,14 @@ async function doPay() {
 }
 
 function sendToAppsScript(customData, paymentId) {
-  var payload = JSON.stringify({
+  var payload = encodeURIComponent(JSON.stringify({
     customData: JSON.stringify(customData),
     paymentId: paymentId
-  });
+  }));
+  
+  var img = new Image();
+  img.src = APPS_SCRIPT_URL + "?data=" + payload;
+}
 
   fetch(APPS_SCRIPT_URL, {
     method: "POST",
