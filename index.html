@@ -237,7 +237,7 @@
 
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
 <script>
-var APPS_SCRIPT_URL = "https://inkuiro-relay.ssstorystorageee.workers.dev";
+var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxH99LI_ojwKbTyV1nCezHLGz6D3gDDSix9NgOcWjobxZ4h-bMhx_tyFEyj6NiB4w-M/exec";
 
 var sel = null;
 var prods = {
@@ -386,15 +386,16 @@ async function doPay() {
 }
 
 function sendToAppsScript(customData, paymentId) {
-  var payload = JSON.stringify({
-    customData: JSON.stringify(customData),
-    paymentId: paymentId
-  });
-
-  fetch(APPS_SCRIPT_URL, {
+  var DIRECT_URL = 'https://script.google.com/macros/s/AKfycbxH99LI_ojwKbTyV1nCezHLGz6D3gDDSix9NgOcWjobxZ4h-bMhx_tyFEyj6NiB4w-M/exec';
+  
+  fetch(DIRECT_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: payload
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({
+      customData: JSON.stringify(customData),
+      paymentId: paymentId
+    })
   });
 }
 
