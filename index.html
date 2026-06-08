@@ -94,7 +94,6 @@
     <span class="sl" id="sl3">결제</span>
   </div>
   <div class="body">
-    <!-- STEP 1 -->
     <div class="step active" id="step-1">
       <div class="pc" id="c1" onclick="selProd(1)">
         <div class="pt">
@@ -126,7 +125,6 @@
         <button class="btn1" onclick="goStep(2)">다음으로</button>
       </div>
     </div>
-    <!-- STEP 2 -->
     <div class="step" id="step-2">
       <div class="fi"><div class="dv"></div>
         <div class="fit">✦ 당신의 이야기를 들려주세요</div>
@@ -206,7 +204,6 @@
       <button class="btn1" onclick="goStep(3)">다음으로 ✦</button>
       <button class="btn2" onclick="goStep(1)">← 리딩 다시 선택하기</button>
     </div>
-    <!-- STEP 3 -->
     <div class="step" id="step-3">
       <div class="fi"><div class="dv"></div>
         <div class="fit">✦ 마지막으로 확인해주세요</div>
@@ -245,6 +242,29 @@ var prods = {
   2: { lbl: '타로 + 별자리 리딩', amt: 15000 },
   3: { lbl: '타로 + 별자리 + 사주', amt: 25000 }
 };
+
+window.addEventListener('DOMContentLoaded', function() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var paymentId = urlParams.get('paymentId');
+  var code = urlParams.get('code');
+  var message = urlParams.get('message');
+
+  if (code) {
+    alert("결제 오류: " + message);
+    window.history.replaceState({}, document.title, window.location.pathname);
+  } else if (paymentId) {
+    var savedData = localStorage.getItem('inkTarotOrderData');
+    if (savedData) {
+      var customData = JSON.parse(savedData);
+      showComplete(customData.name);
+      sendToAppsScript(customData, paymentId);
+      localStorage.removeItem('inkTarotOrderData');
+    } else {
+      showComplete("고객");
+    }
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+});
 
 function selProd(n) {
   for (var i = 1; i <= 3; i++) document.getElementById('c'+i).classList.remove('sel');
@@ -351,6 +371,8 @@ async function doPay() {
 
   var paymentId = "ink" + Date.now() + Math.random().toString(36).substr(2,6);
 
+  localStorage.setItem('inkTarotOrderData', JSON.stringify(customData));
+
   try {
     var response = await PortOne.requestPayment({
       storeId:     "store-7ebab433-9989-4701-a77c-3ac5fece98c6",
@@ -360,6 +382,7 @@ async function doPay() {
       totalAmount: p.amt,
       currency:    "KRW",
       payMethod:   "CARD",
+      redirectUrl: window.location.href, 
       customer: {
         fullName: customData.name,
         email:    email
@@ -373,15 +396,17 @@ async function doPay() {
       } else {
         alert("결제 오류: " + (response.message || response.code));
       }
+      localStorage.removeItem('inkTarotOrderData');
       return;
     }
 
-    // 결제 성공 → Apps Script로 직접 전송
+    localStorage.removeItem('inkTarotOrderData'); 
     showComplete(customData.name);
     sendToAppsScript(customData, paymentId);
 
   } catch(err) {
     alert("결제 오류: " + err.message);
+    localStorage.removeItem('inkTarotOrderData');
   }
 }
 
