@@ -76,6 +76,11 @@
     .dv { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, #d4af6a, transparent); margin: 0 auto 28px; }
     .footer { padding: 20px 32px; text-align: center; border-top: 1px solid #2a1018; color: #4a2a3a; font-size: 10px; line-height: 1.9; }
     .footer a { color: #6a4a5a; text-decoration: underline; }
+    .pmrow { display: flex; gap: 10px; }
+    .pmopt { flex: 1; background: #180810; border: 1px solid #3a1020; border-radius: 8px; padding: 14px 16px; cursor: pointer; transition: all 0.25s; display: flex; align-items: center; }
+    .pmopt:hover { border-color: #6a2a3a; }
+    .pmopt.sel { border-color: #d4af6a; background: #250d17; }
+    .pmlabel { color: #f5e6d0; font-size: 13px; letter-spacing: 1px; }
   </style>
 </head>
 <body>
@@ -211,6 +216,19 @@
         <div class="fis">결제가 완료되면 당신의 리딩이 시작됩니다.</div>
       </div>
       <div class="sb" id="smry"></div>
+      <div class="fs">
+        <label class="fl">결제 수단 <span>*</span></label>
+        <div class="pmrow">
+          <div class="pmopt sel" id="pm-card" onclick="selPM('card')">
+            <span class="ck" id="pmck-card">✓</span>
+            <span class="pmlabel">신용카드</span>
+          </div>
+          <div class="pmopt" id="pm-kakao" onclick="selPM('kakao')">
+            <span class="ck" id="pmck-kakao">✓</span>
+            <span class="pmlabel">카카오페이</span>
+          </div>
+        </div>
+      </div>
       <div class="fs" style="margin-top:20px">
         <label class="fl">이메일 한 번 더 확인해주세요 <span>*</span></label>
         <input type="email" id="fec" placeholder="직접 타이핑해주세요" onpaste="return false;" oninput="chkEmail()" autocomplete="off">
@@ -235,9 +253,14 @@
 
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
 <script>
+// 진짜 사용되는 단 하나의 Apps Script URL (여기만 바꾸면 전체가 바뀝니다)
 var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEJl8YO9GpQJStacJsrzXe4a4EzlQe72hIYxak33EvknWt-9tbhvlcG_CHKvTwHhRG/exec";
 
+var CHANNEL_KEY_CARD   = "channel-key-69162e21-149d-4d67-ba66-91fad7500939";
+var CHANNEL_KEY_KAKAO  = "channel-key-1d6975d2-81f8-4742-9d70-68aca1b306de";
+
 var sel = null;
+var paymentMethod = 'card';
 var prods = {
   1: { lbl: '기본 타로 리딩', amt: 10000 },
   2: { lbl: '타로 + 별자리 리딩', amt: 15000 },
@@ -272,6 +295,12 @@ function selProd(n) {
   document.getElementById('c'+n).classList.add('sel');
   sel = n;
   document.getElementById('cta').style.display = 'block';
+}
+
+function selPM(which) {
+  paymentMethod = which;
+  document.getElementById('pm-card').classList.toggle('sel', which === 'card');
+  document.getElementById('pm-kakao').classList.toggle('sel', which === 'kakao');
 }
 
 function goStep(n) {
@@ -374,22 +403,31 @@ async function doPay() {
 
   localStorage.setItem('inkTarotOrderData', JSON.stringify(customData));
 
+  var payParams = {
+    storeId:     "store-7ebab433-9989-4701-a77c-3ac5fece98c6",
+    paymentId:   paymentId,
+    orderName:   p.lbl,
+    totalAmount: p.amt,
+    currency:    "KRW",
+    redirectUrl: window.location.href,
+    customer: {
+      fullName: customData.name,
+      email:    email
+    },
+    customData: JSON.stringify(customData)
+  };
+
+  if (paymentMethod === 'kakao') {
+    payParams.channelKey = CHANNEL_KEY_KAKAO;
+    payParams.payMethod  = "EASY_PAY";
+    payParams.easyPay     = { easyPayProvider: "EASY_PAY_PROVIDER_KAKAOPAY" };
+  } else {
+    payParams.channelKey = CHANNEL_KEY_CARD;
+    payParams.payMethod  = "CARD";
+  }
+
   try {
-    var response = await PortOne.requestPayment({
-      storeId:     "store-7ebab433-9989-4701-a77c-3ac5fece98c6",
-      channelKey:  "channel-key-69162e21-149d-4d67-ba66-91fad7500939",
-      paymentId:   paymentId,
-      orderName:   p.lbl,
-      totalAmount: p.amt,
-      currency:    "KRW",
-      payMethod:   "CARD",
-      redirectUrl: window.location.href, 
-      customer: {
-        fullName: customData.name,
-        email:    email
-      },
-      customData: JSON.stringify(customData)
-    });
+    var response = await PortOne.requestPayment(payParams);
 
     if (response && response.code) {
       if (response.code === "USER_CANCEL") {
@@ -412,9 +450,7 @@ async function doPay() {
 }
 
 function sendToAppsScript(customData, paymentId) {
-  var DIRECT_URL = 'https://script.google.com/macros/s/AKfycbxH99LI_ojwKbTyV1nCezHLGz6D3gDDSix9NgOcWjobxZ4h-bMhx_tyFEyj6NiB4w-M/exec';
-  
-  fetch(DIRECT_URL, {
+  fetch(APPS_SCRIPT_URL, {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "text/plain" },
