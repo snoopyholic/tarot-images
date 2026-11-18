@@ -291,6 +291,7 @@ window.addEventListener('DOMContentLoaded', function() {
   var message = urlParams.get('message');
 
   if (code) {
+    localStorage.removeItem('inkTarotOrderData');
     alert("결제 오류: " + message);
     window.history.replaceState({}, document.title, window.location.pathname);
   } else if (paymentId) {
@@ -301,7 +302,9 @@ window.addEventListener('DOMContentLoaded', function() {
       sendToAppsScript(customData, paymentId);
       localStorage.removeItem('inkTarotOrderData');
     } else {
+      // 다른 브라우저로 돌아온 경우: 결제번호만 보내면 서버가 포트원에 저장된 주문 내용으로 처리합니다
       showComplete("고객");
+      sendToAppsScript(null, paymentId);
     }
     window.history.replaceState({}, document.title, window.location.pathname);
   }
@@ -481,10 +484,10 @@ function sendToAppsScript(customData, paymentId) {
     mode: "no-cors",
     keepalive: true,
     headers: { "Content-Type": "text/plain" },
-    body: JSON.stringify({
+    body: JSON.stringify(customData ? {
       customData: JSON.stringify(customData),
       paymentId: paymentId
-    })
+    } : { paymentId: paymentId })
   });
 }
 
