@@ -76,6 +76,14 @@
     .dv { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, #d4af6a, transparent); margin: 0 auto 28px; }
     .footer { padding: 20px 32px; text-align: center; border-top: 1px solid #2a1018; color: #8a6a78; font-size: 11px; line-height: 1.9; }
     .footer a { color: #b08a7a; text-decoration: underline; }
+    .agree { background: #180810; border: 1px solid #3a1020; border-radius: 8px; padding: 16px 18px; margin: 20px 0 8px; }
+    .agree .ci { align-items: flex-start; padding: 6px 0; }
+    .agree .cb { margin-top: 2px; }
+    .agree .all { border-bottom: 1px solid #2a1018; padding-bottom: 12px; margin-bottom: 6px; }
+    .agree .all .cl { color: #f5e6d0; font-size: 13px; }
+    .agree .cl a { color: #d4af6a; text-decoration: underline; margin-left: 4px; white-space: nowrap; }
+    .agree .req { color: #c47a5a; font-size: 10px; margin-right: 4px; }
+    .ai-note { color: #9a7a88; font-size: 11px; line-height: 1.8; text-align: center; margin-top: 18px; }
     .pmrow { display: flex; gap: 10px; }
     .pmopt { flex: 1; background: #180810; border: 1px solid #3a1020; border-radius: 8px; padding: 14px 16px; cursor: pointer; transition: all 0.25s; display: flex; align-items: center; }
     .pmopt:hover { border-color: #6a2a3a; }
@@ -126,6 +134,7 @@
         <div class="pf"><span class="ft">켈틱 크로스 10장</span><span class="ft">상승궁 포함 별자리</span><span class="ft">사주팔자 분석</span><span class="ft">대운 · 세운 흐름</span></div>
         <div class="tl">태어날 때부터 하늘이 새겨둔 것까지.<br>가장 깊은 곳에 닿는 리딩입니다.</div>
       </div>
+      <div class="ai-note">모든 리딩은 잉크의위로가 설계한 해석 기준에 따라<br>AI(Anthropic Claude)를 활용해 작성되어 이메일로 발송됩니다.</div>
       <div class="cta" id="cta">
         <div class="ctat">당신의 이야기를<br>들려주실 차례입니다 ✦</div>
         <button class="btn1" onclick="goStep(2)">다음으로</button>
@@ -185,6 +194,7 @@
       <div class="fs">
         <label class="fl">쉽게 꺼내지 못했던 그 고민 <span>*</span></label>
         <textarea id="fc" placeholder="들려주신다면 소중히 읽어보고 조심스레 말씀 올리겠습니다."></textarea>
+        <div class="fh">✦ 주민등록번호·연락처·건강 정보처럼 리딩에 꼭 필요하지 않은 민감한 정보는 적지 않으셔도 괜찮아요.</div>
       </div>
       <div class="fs">
         <label class="fl">원하는 리딩의 온도</label>
@@ -237,7 +247,16 @@
         <input type="email" id="fec" placeholder="직접 타이핑해주세요" onpaste="return false;" oninput="chkEmail()" autocomplete="off">
         <div class="fh" id="emh" style="margin-top:6px"></div>
       </div>
-      <div class="notice">결제 후 48시간 이내 이메일로 리포트가 발송됩니다.<br>발송 완료 후에는 디지털 콘텐츠 특성상 환불이 어렵습니다.</div>
+      <div class="agree">
+        <label class="ci all"><input type="checkbox" id="ag-all" onchange="agreeAll(this.checked)"><div class="cb"></div><span class="cl">아래 내용에 모두 동의합니다</span></label>
+        <label class="ci"><input type="checkbox" class="ag" id="ag-terms" onchange="syncAgree()"><div class="cb"></div><span class="cl"><span class="req">[필수]</span>이용약관 및 환불정책 동의<a href="terms.html#terms" target="_blank">보기</a></span></label>
+        <label class="ci"><input type="checkbox" class="ag" id="ag-privacy" onchange="syncAgree()"><div class="cb"></div><span class="cl"><span class="req">[필수]</span>개인정보 수집·이용 동의<a href="terms.html#privacy" target="_blank">보기</a></span></label>
+        <label class="ci"><input type="checkbox" class="ag" id="ag-overseas" onchange="syncAgree()"><div class="cb"></div><span class="cl"><span class="req">[필수]</span>개인정보 국외 이전 동의 (Anthropic·Google, 미국)<a href="terms.html#overseas" target="_blank">보기</a></span></label>
+        <label class="ci"><input type="checkbox" class="ag" id="ag-digital" onchange="syncAgree()"><div class="cb"></div><span class="cl"><span class="req">[필수]</span>리포트가 결제 직후 작성·발송되며, 발송이 시작된 뒤에는 디지털 콘텐츠 특성상 청약철회(환불)가 제한됨을 확인합니다</span></label>
+        <label class="ci"><input type="checkbox" class="ag" id="ag-age" onchange="syncAgree()"><div class="cb"></div><span class="cl"><span class="req">[필수]</span>만 14세 이상입니다</span></label>
+        <div class="fh" id="agh" style="color:#c47a5a"></div>
+      </div>
+      <div class="notice">결제 후 48시간 이내 이메일로 리포트가 발송됩니다.<br>발송 전에는 전액 환불되며, 발송이 시작된 뒤에는 환불이 어렵습니다.</div>
       <button class="btn1" onclick="doPay()">결제하기 ✦</button>
       <button class="btn2" onclick="goStep(2)">← 내용 수정하기</button>
     </div>
@@ -400,7 +419,24 @@ function chkEmail() {
   }
 }
 
+function agreeAll(on) {
+  document.querySelectorAll('.ag').forEach(function(el){ el.checked = on; });
+  document.getElementById('agh').textContent = '';
+}
+
+function syncAgree() {
+  var all = Array.prototype.every.call(document.querySelectorAll('.ag'), function(el){ return el.checked; });
+  document.getElementById('ag-all').checked = all;
+  if (all) document.getElementById('agh').textContent = '';
+}
+
 async function doPay() {
+  var allAgreed = Array.prototype.every.call(document.querySelectorAll('.ag'), function(el){ return el.checked; });
+  if (!allAgreed) {
+    document.getElementById('agh').textContent = '필수 항목에 모두 동의해주셔야 결제할 수 있어요.';
+    return;
+  }
+
   var email = document.getElementById('fe').value.trim();
   var conf  = document.getElementById('fec').value.trim();
   var hint  = document.getElementById('emh');
@@ -425,7 +461,8 @@ async function doPay() {
     tones:      tones,
     additional: adds,
     keywords:   document.getElementById('fk').value.trim(),
-    extra:      document.getElementById('fa').value.trim()
+    extra:      document.getElementById('fa').value.trim(),
+    agreedAt:   new Date().toISOString()
   };
 
   var paymentId = "ink" + Date.now() + Math.random().toString(36).slice(2,8);

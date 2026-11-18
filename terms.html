@@ -21,10 +21,11 @@
     .section li { margin-bottom: 6px; }
     table { width: 100%; border-collapse: collapse; margin-top: 12px; }
     th { background: #2a0d18; color: #d4af6a; font-size: 12px; padding: 10px 14px; border: 1px solid #3a1020; text-align: center; }
-    td { color: #c0a0a8; font-size: 12px; padding: 10px 14px; border: 1px solid #3a1020; line-height: 1.8; }
+    td { word-break: keep-all; overflow-wrap: anywhere; color: #c0a0a8; font-size: 12px; padding: 10px 14px; border: 1px solid #3a1020; line-height: 1.8; }
     .back-btn { display: inline-block; margin: 0 40px 40px; color: #9a6a5a; font-size: 12px; letter-spacing: 2px; text-decoration: none; border: 1px solid #3a1020; padding: 10px 20px; border-radius: 4px; }
     .back-btn:hover { border-color: #d4af6a; color: #d4af6a; }
     .footer { padding: 20px 40px; text-align: center; border-top: 1px solid #2a1018; color: #8a6a78; font-size: 11px; line-height: 1.9; }
+    @media (max-width: 600px) { .body { padding: 28px 20px; } .header { padding: 36px 20px 28px; } th, td { padding: 8px; } .back-btn { margin: 0 20px 32px; } }
   </style>
 </head>
 <body>
@@ -40,6 +41,7 @@
     <div class="section">
       <div class="section-title">📌 서비스 소개</div>
       <p>잉크의위로는 켈틱 크로스 10장 스프레딩을 활용한 1:1 맞춤 타로 리딩 서비스입니다. 신청자의 고민과 상황에 맞게 개인화된 리딩 리포트를 이메일로 발송해드립니다.</p>
+      <p>리딩 리포트는 잉크의위로가 설계한 해석 기준과 문체에 따라 AI(Anthropic Claude)를 활용해 작성됩니다.</p>
     </div>
 
     <div class="section">
@@ -69,16 +71,16 @@
       <p style="margin-top:12px;">형태: 디지털 콘텐츠 (이메일 발송) · 발송 기간: 결제 완료 후 48시간 이내</p>
     </div>
 
-    <div class="section">
+    <div class="section" id="terms">
       <div class="section-title">📋 이용약관</div>
       <p><strong style="color:#d4af6a;">제1조 (목적)</strong></p>
       <p>본 약관은 잉크의위로(이하 "서비스")가 제공하는 타로 리딩 서비스의 이용 조건 및 절차에 관한 사항을 규정함을 목적으로 합니다.</p><br>
       <p><strong style="color:#d4af6a;">제2조 (서비스 내용)</strong></p>
-      <p>서비스는 신청자가 제출한 정보를 바탕으로 타로 리딩 리포트를 작성하여 이메일로 제공합니다. 본 서비스는 오락 및 자기 성찰 목적으로 제공되며, 의학적·법적·재무적 조언을 대체하지 않습니다.</p><br>
+      <p>서비스는 신청자가 제출한 정보를 바탕으로 타로 리딩 리포트를 작성하여 이메일로 제공합니다. 리포트는 AI(Anthropic Claude)를 활용해 작성됩니다. 본 서비스는 오락 및 자기 성찰 목적으로 제공되며, 의학적·법적·재무적 조언을 대체하지 않습니다.</p><br>
       <p><strong style="color:#d4af6a;">제3조 (이용 계약 성립)</strong></p>
-      <p>이용 계약은 신청자가 신청 페이지에서 신청 정보를 입력하고 결제를 완료한 시점에 성립합니다.</p><br>
+      <p>이용 계약은 신청자가 신청 페이지에서 신청 정보를 입력하고, 본 약관·개인정보 처리 등 필수 항목에 동의한 뒤 결제를 완료한 시점에 성립합니다. 서비스는 만 14세 이상만 이용할 수 있습니다.</p><br>
       <p><strong style="color:#d4af6a;">제4조 (서비스 제공)</strong></p>
-      <p>리딩 리포트는 결제 완료 후 48시간 이내에 신청 시 기재한 이메일 주소로 발송됩니다.</p><br>
+      <p>리딩 리포트는 결제가 확인되면 바로 작성이 시작되며, 결제 완료 후 48시간 이내에 신청 시 기재한 이메일 주소로 발송됩니다.</p><br>
       <p><strong style="color:#d4af6a;">제5조 (이용자의 의무)</strong></p>
       <p>이용자는 정확한 정보를 제공해야 하며, 허위 정보 제공으로 인한 불이익은 이용자 본인에게 귀속됩니다.</p><br>
       <p><strong style="color:#d4af6a;">제6조 (서비스 제한)</strong></p>
@@ -87,7 +89,7 @@
       <p>본 약관은 서비스 운영 정책에 따라 변경될 수 있으며, 변경 시 공지합니다.</p>
     </div>
 
-    <div class="section">
+    <div class="section" id="refund">
       <div class="section-title">💸 환불 정책</div>
       <table>
         <tr>
@@ -95,12 +97,12 @@
           <th>환불 여부</th>
         </tr>
         <tr>
-          <td>결제 후 단순 변심</td>
-          <td>환불 불가 (디지털 콘텐츠 특성상)</td>
+          <td>리포트 발송 전 단순 변심</td>
+          <td>전액 환불</td>
         </tr>
         <tr>
-          <td>리포트 발송 완료 후</td>
-          <td>환불 불가 (디지털 콘텐츠 특성상)</td>
+          <td>리포트 발송이 시작된 후 단순 변심</td>
+          <td>환불 불가 (디지털 콘텐츠 제공 개시, 결제 전 고지 및 동의)</td>
         </tr>
         <tr>
           <td>48시간 초과 미발송</td>
@@ -115,21 +117,53 @@
           <td>환불 불가 (정확한 이메일 제공 시 재발송 가능)</td>
         </tr>
       </table>
-      <p style="margin-top:12px;">환불 신청: ssstorystorageee@gmail.com · 처리 기간: 영업일 3일 이내</p>
+      <p style="margin-top:12px;">리포트는 결제가 확인되면 바로 작성되어 보통 몇 분 안에 발송이 시작됩니다. 이 점은 결제 전에 고지하고 동의를 받습니다 (전자상거래법 제17조 제2항 제5호).</p>
+      <p>환불 신청: ssstorystorageee@gmail.com · 처리 기간: 영업일 3일 이내</p>
     </div>
 
-    <div class="section">
+    <div class="section" id="privacy">
       <div class="section-title">🔒 개인정보처리방침</div>
-      <p><strong style="color:#d4af6a;">수집 항목:</strong> 이름(닉네임), 이메일, 생년월일, 출생시간, 성별, 상담 내용</p><br>
-      <p><strong style="color:#d4af6a;">수집 목적:</strong> 타로 리딩 서비스 제공 및 리포트 이메일 발송</p><br>
-      <p><strong style="color:#d4af6a;">보유 기간:</strong> 서비스 제공 완료 후 1년간 보관 후 파기</p><br>
-      <p><strong style="color:#d4af6a;">처리 위탁:</strong></p>
+      <p><strong style="color:#d4af6a;">1. 수집 항목</strong></p>
+      <p>필수: 이름(닉네임), 이메일, 생년월일, 성별, 상담 유형, 상담 내용<br>선택: 출생 시간, 원하는 리딩 톤, 한 단어 키워드, 부가 요소, 추가로 전하고 싶은 말<br>결제 시: 결제번호, 결제 금액, 결제 수단 정보(결제대행사가 처리하며 카드번호는 서비스가 보관하지 않습니다)</p><br>
+      <p><strong style="color:#d4af6a;">2. 수집·이용 목적</strong></p>
+      <p>타로 리딩 리포트 작성 및 이메일 발송, 결제 확인, 환불·문의 응대</p><br>
+      <p><strong style="color:#d4af6a;">3. 보유 및 이용 기간</strong></p>
       <ul>
-        <li>포트원: 결제 처리</li>
-        <li>Google: 신청 정보 저장 및 이메일 발송</li>
-        <li>Anthropic(Claude API): 리딩 리포트 생성</li>
+        <li>신청 정보·상담 내용: 리포트 발송 후 1년간 보관 후 파기</li>
+        <li>계약·청약철회·대금결제 기록: 5년 (전자상거래법)</li>
+        <li>소비자 불만·분쟁 처리 기록: 3년 (전자상거래법)</li>
       </ul><br>
-      <p>개인정보 관련 문의: ssstorystorageee@gmail.com</p>
+      <p><strong style="color:#d4af6a;">4. 동의를 거부할 권리</strong></p>
+      <p>개인정보 수집·이용 및 국외 이전에 동의하지 않을 수 있습니다. 다만 필수 항목은 리포트 작성에 꼭 필요하므로, 동의하지 않으면 서비스를 이용할 수 없습니다.</p><br>
+      <p><strong style="color:#d4af6a;">5. 처리 위탁</strong></p>
+      <ul>
+        <li>(주)코리아포트원: 결제 처리 및 결제 정보 확인</li>
+        <li>한국결제네트웍스, 카카오페이: 결제 대행</li>
+        <li>Google LLC: 신청 정보 저장(Google 스프레드시트) 및 이메일 발송(Gmail)</li>
+        <li>Anthropic PBC: 리딩 리포트 작성(Claude API)</li>
+      </ul><br>
+      <p><strong style="color:#d4af6a;">6. 파기</strong></p>
+      <p>보유 기간이 지난 정보는 지체 없이 스프레드시트에서 삭제하고, 법령에 따라 보관하는 기록은 별도로 분리해 보관합니다.</p><br>
+      <p><strong style="color:#d4af6a;">7. 정보주체의 권리</strong></p>
+      <p>언제든 본인 정보의 열람·정정·삭제·처리 정지를 요청할 수 있으며, 아래 이메일로 요청하시면 지체 없이 처리합니다.</p><br>
+      <p><strong style="color:#d4af6a;">8. 개인정보 보호책임자</strong></p>
+      <p>노시은 (대표) · ssstorystorageee@gmail.com · 070-8064-8895</p>
+    </div>
+
+    <div class="section" id="overseas">
+      <div class="section-title">🌏 개인정보 국외 이전</div>
+      <p>리포트 작성과 신청 정보 보관을 위해 아래와 같이 개인정보가 국외로 이전됩니다. 이전은 결제가 확인된 시점에 네트워크를 통해 이루어집니다.</p>
+      <ul>
+        <li><strong style="color:#d4af6a;">Anthropic PBC (미국)</strong> · privacy@anthropic.com<br>
+          항목: 이름(닉네임), 생년월일, 출생 시간, 성별, 상담 유형·내용, 리딩 톤, 키워드, 부가 요소, 추가 내용<br>
+          목적: 리딩 리포트 작성<br>
+          보유: Anthropic의 API 데이터 보존 정책에 따라 처리 후 삭제</li>
+        <li><strong style="color:#d4af6a;">Google LLC (미국)</strong> · support.google.com/policies<br>
+          항목: 신청 정보 전체, 결제번호<br>
+          목적: 신청 정보 저장 및 이메일 발송<br>
+          보유: 위 개인정보처리방침 3번의 보유 기간 동안</li>
+      </ul>
+      <p style="margin-top:12px;">국외 이전을 원하지 않으시면 동의하지 않을 수 있습니다. 다만 리포트 작성이 불가능해 서비스를 이용할 수 없습니다.</p>
     </div>
 
   </div>
