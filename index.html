@@ -14,11 +14,11 @@
     h1 { color: #f5e6d0; font-size: 28px; letter-spacing: 6px; font-weight: 300; margin-bottom: 6px; }
     .subtitle { color: #9a6a5a; font-size: 10px; letter-spacing: 4px; margin-bottom: 20px; }
     .dg { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #d4af6a, transparent); margin: 0 auto; }
-    .si { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 18px 32px; border-bottom: 1px solid #2a1018; }
+    .si { display: flex; justify-content: center; align-items: center; gap: 6px; padding: 18px 16px; flex-wrap: wrap; border-bottom: 1px solid #2a1018; }
     .sd { width: 6px; height: 6px; border-radius: 50%; background: #3a1020; transition: all 0.3s; }
     .sd.active { background: #d4af6a; width: 20px; border-radius: 3px; }
     .sd.done { background: #6a3a2a; }
-    .sl { color: #6a4a5a; font-size: 10px; letter-spacing: 2px; }
+    .sl { color: #8a6a7a; font-size: 11px; letter-spacing: 1px; margin-right: 6px; }
     .sl.active { color: #d4af6a; }
     .body { padding: 36px 32px; }
     .step { display: none; }
@@ -30,9 +30,9 @@
     .pt { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
     .pn { color: #f5e6d0; font-size: 14px; letter-spacing: 1px; line-height: 1.5; }
     .ppw { text-align: right; }
-    .ppo { color: #6a3a4a; font-size: 11px; text-decoration: line-through; }
-    .pp { color: #d4af6a; font-size: 18px; font-weight: 600; }
-    .pb { display: inline-block; background: #2a0d18; color: #9a6a5a; font-size: 9px; letter-spacing: 1px; padding: 2px 8px; border-radius: 10px; margin-top: 3px; }
+    .ppo { color: #8a5a6a; font-size: 11px; text-decoration: line-through; white-space: nowrap; }
+    .pp { color: #d4af6a; font-size: 18px; font-weight: 600; white-space: nowrap; }
+    .pb { white-space: nowrap; display: inline-block; background: #2a0d18; color: #9a6a5a; font-size: 9px; letter-spacing: 1px; padding: 2px 8px; border-radius: 10px; margin-top: 3px; }
     .pf { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
     .ft { color: #9a7888; font-size: 10px; background: #200a14; border: 1px solid #3a1020; padding: 3px 10px; border-radius: 20px; }
     .tl { color: #9a6a5a; font-size: 11px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #2a1018; font-style: italic; line-height: 1.8; display: none; }
@@ -45,7 +45,7 @@
     .fit { color: #d4af6a; font-size: 13px; letter-spacing: 2px; margin-bottom: 8px; }
     .fis { color: #7a5a6a; font-size: 11px; line-height: 1.9; }
     .fs { margin-bottom: 22px; }
-    .fl { color: #9a6a5a; font-size: 10px; letter-spacing: 2px; margin-bottom: 8px; display: block; }
+    .fl { color: #b08a7a; font-size: 11px; letter-spacing: 2px; margin-bottom: 8px; display: block; }
     .fl span { color: #8a3a2a; }
     input[type=text], input[type=email], input[type=date], select, textarea {
       width: 100%; background: #180810; border: 1px solid #3a1020; border-radius: 6px;
@@ -55,7 +55,7 @@
     input:focus, select:focus, textarea:focus { border-color: #6a3a4a; }
     select option { background: #1e0d14; }
     textarea { resize: vertical; min-height: 100px; line-height: 1.9; }
-    .fh { color: #5a3a4a; font-size: 10px; margin-top: 5px; line-height: 1.7; font-style: italic; }
+    .fh { color: #9a7a88; font-size: 11px; margin-top: 5px; line-height: 1.7; font-style: italic; }
     .fr { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .cg { display: flex; flex-direction: column; gap: 10px; }
     .ci { display: flex; align-items: center; gap: 10px; cursor: pointer; }
@@ -65,17 +65,17 @@
     .ci input[type=checkbox]:checked + .cb::after { content: "✓"; color: #1e0d14; font-size: 10px; }
     .cl { color: #c5a888; font-size: 12px; line-height: 1.5; }
     .btn1 { background: linear-gradient(135deg, #8a2a3a, #6a1a2a); color: #f5e6d0; border: 1px solid #d4af6a; border-radius: 6px; padding: 16px; font-size: 14px; letter-spacing: 3px; cursor: pointer; width: 100%; font-family: 'Noto Serif KR', Georgia, serif; }
-    .btn2 { background: transparent; color: #6a4a5a; border: 1px solid #3a1020; border-radius: 6px; padding: 12px; font-size: 12px; letter-spacing: 2px; cursor: pointer; width: 100%; font-family: 'Noto Serif KR', Georgia, serif; margin-top: 10px; }
+    .btn2 { background: transparent; color: #9a7a88; border: 1px solid #3a1020; border-radius: 6px; padding: 12px; font-size: 12px; letter-spacing: 2px; cursor: pointer; width: 100%; font-family: 'Noto Serif KR', Georgia, serif; margin-top: 10px; }
     .sb { background: #180810; border: 1px solid #3a1020; border-radius: 8px; padding: 20px; margin-bottom: 24px; }
     .sr { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #2a1018; }
     .sr:last-child { border-bottom: none; }
     .sk { color: #7a5a6a; font-size: 11px; }
     .sv { color: #f5e6d0; font-size: 12px; text-align: right; max-width: 60%; }
     .sprize { color: #d4af6a; font-size: 20px; font-weight: 600; }
-    .notice { color: #6a4a5a; font-size: 11px; line-height: 1.9; margin: 20px 0; text-align: center; }
+    .notice { color: #9a7a88; font-size: 12px; line-height: 1.9; margin: 20px 0; text-align: center; }
     .dv { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, #d4af6a, transparent); margin: 0 auto 28px; }
-    .footer { padding: 20px 32px; text-align: center; border-top: 1px solid #2a1018; color: #4a2a3a; font-size: 10px; line-height: 1.9; }
-    .footer a { color: #6a4a5a; text-decoration: underline; }
+    .footer { padding: 20px 32px; text-align: center; border-top: 1px solid #2a1018; color: #8a6a78; font-size: 11px; line-height: 1.9; }
+    .footer a { color: #b08a7a; text-decoration: underline; }
     .pmrow { display: flex; gap: 10px; }
     .pmopt { flex: 1; background: #180810; border: 1px solid #3a1020; border-radius: 8px; padding: 14px 16px; cursor: pointer; transition: all 0.25s; display: flex; align-items: center; }
     .pmopt:hover { border-color: #6a2a3a; }
@@ -92,9 +92,10 @@
     <div class="dg"></div>
   </div>
   <div class="si">
-    <span class="sl active" id="sl1">리딩 선택</span>
     <div class="sd active" id="sd1"></div>
+    <span class="sl active" id="sl1">리딩 선택</span>
     <div class="sd" id="sd2"></div>
+    <span class="sl" id="sl2">정보 입력</span>
     <div class="sd" id="sd3"></div>
     <span class="sl" id="sl3">결제</span>
   </div>
@@ -147,12 +148,14 @@
       <div class="fr">
         <div class="fs">
           <label class="fl">생년월일 <span>*</span></label>
-          <input type="date" id="fb">
+          <input type="date" id="fb" min="1900-01-01">
           <div class="fh">✦ 양력 기준으로 입력해주세요. 음력이라면 양력으로 변환 후 입력해주세요.</div>
         </div>
         <div class="fs">
           <label class="fl">태어난 시간</label>
-          <input type="text" id="ftm" placeholder="오전 3시→3, 오후 3시→15">
+          <select id="ftm">
+            <option value="">모름</option>
+          </select>
           <div class="fh">모르셔도 괜찮아요</div>
         </div>
       </div>
@@ -267,7 +270,21 @@ var prods = {
   3: { lbl: '타로 + 별자리 + 사주', amt: 25000 }
 };
 
+function todayStr() {
+  var d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
 window.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('fb').max = todayStr();
+  var tm = document.getElementById('ftm');
+  for (var h = 0; h < 24; h++) {
+    var o = document.createElement('option');
+    o.value = String(h);
+    o.textContent = (h < 12 ? '오전 ' : '오후 ') + (h % 12 === 0 ? 12 : h % 12) + '시대 (' + h + '시)';
+    tm.appendChild(o);
+  }
+
   var urlParams = new URLSearchParams(window.location.search);
   var paymentId = urlParams.get('paymentId');
   var code = urlParams.get('code');
@@ -314,6 +331,7 @@ function goStep(n) {
     else if (i === n) d.classList.add('active');
   }
   document.getElementById('sl1').classList[n===1?'add':'remove']('active');
+  document.getElementById('sl2').classList[n===2?'add':'remove']('active');
   document.getElementById('sl3').classList[n===3?'add':'remove']('active');
   if (n === 3) {
     mkSummary();
@@ -327,7 +345,9 @@ function validate() {
   if (!document.getElementById('fn').value.trim()) { alert('이름 또는 닉네임을 알려주세요.'); return false; }
   var em = document.getElementById('fe').value.trim();
   if (!em || em.indexOf('@') < 0) { alert('이메일을 정확히 입력해주세요.'); return false; }
-  if (!document.getElementById('fb').value) { alert('생년월일을 입력해주세요.'); return false; }
+  var fb = document.getElementById('fb').value;
+  if (!fb) { alert('생년월일을 입력해주세요.'); return false; }
+  if (fb < '1900-01-01' || fb > todayStr()) { alert('생년월일을 다시 확인해주세요.'); return false; }
   if (!document.getElementById('fg').value) { alert('성별을 선택해주세요.'); return false; }
   if (!document.getElementById('fty').value) { alert('상담 유형을 선택해주세요.'); return false; }
   if (!document.getElementById('fc').value.trim()) { alert('고민 내용을 적어주세요.'); return false; }
@@ -353,8 +373,14 @@ function mkSummary() {
   document.getElementById('smry').innerHTML = h;
 }
 
+function esc(v) {
+  return String(v).replace(/[&<>"']/g, function(c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+
 function row(k, v) {
-  return '<div class="sr"><span class="sk">'+k+'</span><span class="sv">'+v+'</span></div>';
+  return '<div class="sr"><span class="sk">'+esc(k)+'</span><span class="sv">'+esc(v)+'</span></div>';
 }
 
 function chkEmail() {
@@ -399,7 +425,7 @@ async function doPay() {
     extra:      document.getElementById('fa').value.trim()
   };
 
-  var paymentId = "ink" + Date.now() + Math.random().toString(36).substr(2,6);
+  var paymentId = "ink" + Date.now() + Math.random().toString(36).slice(2,8);
 
   localStorage.setItem('inkTarotOrderData', JSON.stringify(customData));
 
@@ -453,6 +479,7 @@ function sendToAppsScript(customData, paymentId) {
   fetch(APPS_SCRIPT_URL, {
     method: "POST",
     mode: "no-cors",
+    keepalive: true,
     headers: { "Content-Type": "text/plain" },
     body: JSON.stringify({
       customData: JSON.stringify(customData),
@@ -465,7 +492,7 @@ function showComplete(name) {
   document.querySelector('.body').innerHTML =
     '<div style="text-align:center;padding:40px 0;">' +
     '<div style="color:#d4af6a;font-size:32px;margin-bottom:24px;">✦</div>' +
-    '<div style="color:#f5e6d0;font-size:18px;letter-spacing:2px;margin-bottom:16px;">' + name + ' 님의 리딩이 시작되었습니다</div>' +
+    '<div style="color:#f5e6d0;font-size:18px;letter-spacing:2px;margin-bottom:16px;">' + esc(name) + ' 님의 리딩이 시작되었습니다</div>' +
     '<div style="color:#9a6a5a;font-size:12px;line-height:2;">결제가 완료되었습니다.<br>48시간 이내에 입력하신 이메일로<br>리포트가 발송됩니다 ✦</div>' +
     '</div>';
   window.scrollTo(0,0);
