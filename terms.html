@@ -4,27 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>잉크의위로 서비스 이용약관</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Cormorant+Garamond:ital@1&display=swap');
+    :root { --ink: #231a33; --ink-2: #5c5269; --ink-3: #958ca2; --gold: #a88450; --line: #ebe5ee; --line-2: #dcd3e2; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Noto Serif KR', Georgia, serif; background: #1a0a0f; min-height: 100vh; padding: 40px 20px; }
-    .container { background: #1e0d14; border: 1px solid #4a1a2a; border-radius: 12px; max-width: 720px; width: 100%; margin: 0 auto; overflow: hidden; }
-    .header { background: linear-gradient(180deg, #2d0d1a 0%, #1e0d14 100%); padding: 44px 40px 36px; text-align: center; border-bottom: 1px solid #3a1020; }
-    .brand { color: #d4af6a; font-size: 10px; letter-spacing: 6px; margin-bottom: 14px; }
-    h1 { color: #f5e6d0; font-size: 22px; letter-spacing: 4px; font-weight: 300; margin-bottom: 6px; }
-    .subtitle { color: #9a6a5a; font-size: 10px; letter-spacing: 4px; }
+    body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, 'Apple SD Gothic Neo', sans-serif; color: var(--ink); min-height: 100vh; padding: 40px 16px; -webkit-font-smoothing: antialiased;
+      background: #f3eee8;
+    }
+    .container { background: #fbf8f3; border: 1px solid #ebe5ee; border-radius: 20px; max-width: 720px; width: 100%; margin: 0 auto; overflow: hidden; box-shadow: 0 24px 60px rgba(123,92,170,0.16); }
+    .header { padding: 44px 40px 36px; text-align: center; border-bottom: 1px solid var(--line); background: radial-gradient(ellipse 80% 70% at 50% 0%, #f3ebfa, rgba(243,235,250,0) 75%); }
+    .header::before { content: "☾"; display: block; font-size: 24px; color: var(--gold); margin-bottom: 10px;  }
+    .brand { color: var(--gold); font-size: 10px; letter-spacing: 6px; margin-bottom: 14px; }
+    h1 { font-family: 'Noto Serif KR', Georgia, serif; font-weight: 600 !important; font-size: 24px; letter-spacing: 4px; font-weight: 400; margin-bottom: 6px; color: var(--ink); }
+    .subtitle { color: var(--ink-3); font-size: 12px; letter-spacing: 3px; }
     .body { padding: 40px; }
     .section { margin-bottom: 36px; }
-    .section-title { color: #d4af6a; font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #3a1020; }
-    .section p, .section li { color: #c0a0a8; font-size: 13px; line-height: 2.2; }
+    .section-title { font-family: 'Noto Serif KR', Georgia, serif; font-weight: 600; color: #2e2240; font-size: 16px; letter-spacing: 0.5px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+    .section p, .section li { color: var(--ink-2); font-size: 14px; line-height: 1.9; }
+    .section strong { color: var(--gold) !important; }
     .section ul { padding-left: 20px; }
     .section li { margin-bottom: 6px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-    th { background: #2a0d18; color: #d4af6a; font-size: 12px; padding: 10px 14px; border: 1px solid #3a1020; text-align: center; }
-    td { word-break: keep-all; overflow-wrap: anywhere; color: #c0a0a8; font-size: 12px; padding: 10px 14px; border: 1px solid #3a1020; line-height: 1.8; }
-    .back-btn { display: inline-block; margin: 0 40px 40px; color: #9a6a5a; font-size: 12px; letter-spacing: 2px; text-decoration: none; border: 1px solid #3a1020; padding: 10px 20px; border-radius: 4px; }
-    .back-btn:hover { border-color: #d4af6a; color: #d4af6a; }
-    .footer { padding: 20px 40px; text-align: center; border-top: 1px solid #2a1018; color: #8a6a78; font-size: 11px; line-height: 1.9; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; background: rgba(255,255,255,0.7); border-radius: 10px; overflow: hidden; }
+    th { background: #f7f0e3; color: var(--ink); font-size: 12px; padding: 10px 14px; border: 1px solid var(--line); text-align: center; }
+    td { word-break: keep-all; overflow-wrap: anywhere; color: var(--ink-2); font-size: 12px; padding: 10px 14px; border: 1px solid var(--line); line-height: 1.8; }
+    td[style*="text-align:center"] { white-space: nowrap; overflow-wrap: normal; }
+    td span[style*="line-through"] { color: #b3a3c2 !important; }
+    .back-btn { display: inline-block; margin: 0 40px 40px; color: var(--ink-2); font-size: 13px; letter-spacing: 2px; text-decoration: none; border: 1px solid var(--line-2); padding: 10px 20px; border-radius: 12px; background: rgba(255,255,255,0.7); }
+    .back-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .footer { padding: 20px 40px; text-align: center; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 11px; line-height: 1.9; background: rgba(250,246,255,0.6); }
     @media (max-width: 600px) { .body { padding: 28px 20px; } .header { padding: 36px 20px 28px; } th, td { padding: 8px; } .back-btn { margin: 0 20px 32px; } }
   </style>
 </head>
@@ -54,17 +63,17 @@
         </tr>
         <tr>
           <td>기본 타로 리딩</td>
-          <td style="text-align:center;">10,000원<br><span style="color:#6a3a4a;text-decoration:line-through;font-size:11px;">15,000원</span></td>
+          <td style="text-align:center;">10,000원</td>
           <td>켈틱 크로스 10장 스프레딩 기반 개인화 타로 리딩 리포트</td>
         </tr>
         <tr>
           <td>타로 + 별자리 리딩</td>
-          <td style="text-align:center;">15,000원<br><span style="color:#6a3a4a;text-decoration:line-through;font-size:11px;">20,000원</span></td>
+          <td style="text-align:center;">15,000원</td>
           <td>기본 타로 리딩 + 태양궁·달궁 심층 별자리 분석</td>
         </tr>
         <tr>
           <td>타로 + 별자리 + 사주</td>
-          <td style="text-align:center;">25,000원<br><span style="color:#6a3a4a;text-decoration:line-through;font-size:11px;">30,000원</span></td>
+          <td style="text-align:center;">25,000원</td>
           <td>기본 타로 + 상승궁 포함 별자리 + 사주팔자·대운·세운 분석</td>
         </tr>
       </table>
